@@ -4,8 +4,8 @@ import "./App.css";
 
 function App() {
   const [password, setPassword] = useState("");
-  const [length, setLength] = useState(6);
-  const [numAllowed, setNumAllowed] = useState(false);
+  const [length, setLength] = useState(10);
+  const [numAllowed, setNumAllowed] = useState(true);
   const [symAllowed, setSymAllowed] = useState(false);
 
   const passwordRef = useRef(null);
@@ -46,9 +46,16 @@ function App() {
     <main className="text-white flex flex-col items-center justify-center max-h-screen h-full w-full gap-2">
       <h1 className="text-3xl font-bold">🔐 password generator</h1>
       <p className="text-sm">
-        created by <a href="https://github.com/warisareshi" className="text-red-300 cursor-pointer underline">Waris Abass</a> for fun.
+        created by{" "}
+        <a
+          href="https://github.com/warisareshi"
+          className="text-red-300 cursor-pointer underline"
+        >
+          Waris Abass
+        </a>{" "}
+        for fun.
       </p>
-      <div className="flex flex-row gap-3">
+      <div className="flex flex-row gap-2">
         <input
           type="text"
           className="outline p-2 rounded-md text-black w-80"
@@ -61,6 +68,26 @@ function App() {
           onClick={copyPassword}
         >
           copy
+        </button>
+        <button
+          className="bg-blue-500 p-2 rounded-md"
+          onClick={generatePassword}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-rotate-cw"
+          >
+            <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
+            <path d="M21 3v5h-5" />
+          </svg>
         </button>
       </div>
       <div className="flex flex-row gap-2">
