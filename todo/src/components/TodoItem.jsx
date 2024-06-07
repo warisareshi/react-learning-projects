@@ -1,18 +1,19 @@
 import React from "react";
-import { useTodo } from "../contexts";
 
-const TodoItem = (todo) => {
-  const {toggleTodo, removeTodo, editTodo, setEditing} = useTodo();
+const TodoItem = ({
+  todo,
+  editTodo,
+  removeTodo,
+  setEditing,
+  toggleTodo,
+}) => {
   return (
-    <div
-      className="flex flex-row items-center justify-between w-96 p-1 rounded-md gap-1"
-    >
-      <input
-        type="checkbox"
-        checked={todo.isDone}
-        onChange={() => toggleTodo(todo.id)}
-        className="w-6 h-6 rounded-sm"
-      />
+    <div className="flex flex-row items-center justify-between w-96 p-1 rounded-md gap-1">
+      <input 
+      type="checkbox"
+      checked={todo.isDone}
+      onChange={() => toggleTodo(todo.id)}
+      className="w-6 h-6 rounded-sm" />
 
       {todo.editing ? (
         <input
@@ -23,7 +24,9 @@ const TodoItem = (todo) => {
         />
       ) : (
         <div
-          className={`text-black w-full p-2  ${todo.isDone ? "line-through" : ""}`}
+          className={`text-black w-full p-2  ${
+            todo.isDone ? "line-through" : ""
+          }`}
         >
           {todo.text}
         </div>

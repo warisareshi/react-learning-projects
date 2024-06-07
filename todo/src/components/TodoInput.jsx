@@ -1,13 +1,17 @@
-import { useTodo } from "../contexts";
 
-const TodoInput = () => {
-  const {todoText, addTodo, setTodoText} = useTodo();
+const TodoInput = (
+  {
+    todo,
+    addTodo,
+    setTodo,
+  }
+) => {
   return (
     <div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addTodo(todoText);
+          addTodo(todo);
         }}
         className="flex flex-row
            items-center justify-center"
@@ -15,8 +19,8 @@ const TodoInput = () => {
         <input
           type="text"
           placeholder="Add a todo"
-          value={todoText}
-          onChange={(e) => setTodoText(e.target.value)}
+          value={todo}
+          onChange={(e) => setTodo(e.target.value)}
           className=" p-2 border-l-2 border-y-2 w-96 border-gray-300 rounded-md rounded-r-none"
         />
         <button

@@ -1,19 +1,18 @@
 import { useState } from "react";
 import "./index.css";
 import { TodoInput, TodoItem } from "./components";
-import { TodoProvider } from "./contexts";
 
 function App() {
   const [todos, setTodos] = useState([]);
 
-  const [todoText, setTodoText] = useState("");
+  const [todo, setTodo] = useState("");
 
   const addTodo = (todo) => {
     setTodos([
       ...todos,
       { id: crypto.randomUUID(), text: todo, isDone: false, editing: false },
     ]);
-    console.log(todos)
+    console.log(todos);
   };
 
   const removeTodo = (id) => {
@@ -42,31 +41,24 @@ function App() {
 
   return (
     <>
-      <TodoProvider
-        value={{
-          todos,
-          todoText,
-          setTodoText,
-          setTodos,
-          addTodo,
-          removeTodo,
-          editTodo,
-          toggleTodo,
-          setEditing,
-        }}
-      >
-        <section className="flex flex-col items-center justify-center h-screen gap-4 bg-blue-100">
-          <div className="text-start">
-            <h1 className="text-3xl font-bold">Todo List</h1>
-          </div>
-          <TodoInput />
-          <div className="flex flex-col gap-[0px]">
-            {todos.map((todo) => (
-              <TodoItem key={todo.id} todo={todo} />
-            ))}
-          </div>
-        </section>
-      </TodoProvider>
+      <section className="flex flex-col items-center justify-center h-screen gap-4 bg-blue-100">
+        <div className="text-start">
+          <h1 className="text-3xl font-bold">Todo List</h1>
+        </div>
+        <TodoInput todo={todo} addTodo={addTodo} setTodo={setTodo} />
+        <div className="flex flex-col gap-[0px]">
+          {todos.map((todo) => (
+            <TodoItem
+              key={todo.id} 
+              todo={todo}
+              editTodo={editTodo}
+              removeTodo={removeTodo}
+              setEditing={setEditing}
+              toggleTodo={toggleTodo}
+            />
+          ))}
+        </div>
+      </section>
     </>
   );
 }
