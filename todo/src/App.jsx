@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./index.css";
 import { TodoInput, TodoItem } from "./components";
 
@@ -6,13 +6,23 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   const [todo, setTodo] = useState("");
+  
+  useEffect(() => {
+    const todos = JSON.parse(localStorage.getItem("todos"));
+    if (todos && todos.length > 0) {
+      setTodos(todos);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (todo) => {
     setTodos([
       ...todos,
       { id: crypto.randomUUID(), text: todo, isDone: false, editing: false },
     ]);
-    console.log(todos);
   };
 
   const removeTodo = (id) => {
@@ -49,7 +59,7 @@ function App() {
         <div className="flex flex-col gap-[0px]">
           {todos.map((todo) => (
             <TodoItem
-              key={todo.id} 
+              key={todo.id}
               todo={todo}
               editTodo={editTodo}
               removeTodo={removeTodo}
