@@ -4,8 +4,8 @@ import { createContext, useState } from "react";
 export const TodoContext = createContext({
   todos: [],
   addTodo: (todo) => {},
-  editTodo: (id, todoText) => {},
   removeTodo: (id) => {},
+  updateTodo: (id, text) => {},
   toggleTodo: (id) => {},
 });
 export const TodoProvider = TodoContext.Provider;
