@@ -1,19 +1,18 @@
 import React from "react";
+import { useTodo } from "../TodoContext";
 
-const TodoItem = ({
-  todo,
-  editTodo,
-  removeTodo,
-  setEditing,
-  toggleTodo,
-}) => {
+const TodoItem = ({todo}) => {
+
+  const {todos, toggleTodo, removeTodo} = useTodo();
+
   return (
     <div className="flex flex-row items-center justify-between w-96 p-1 rounded-md gap-1">
-      <input 
-      type="checkbox"
-      checked={todo.isDone}
-      onChange={() => toggleTodo(todo.id)}
-      className="w-6 h-6 rounded-sm" />
+      <input
+        type="checkbox" 
+        checked={todo.done}
+        onChange={() => toggleTodo(todo.id)}
+        className="w-6 h-6 rounded-sm"
+      />
 
       {todo.editing ? (
         <input

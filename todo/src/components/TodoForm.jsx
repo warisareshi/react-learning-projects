@@ -1,11 +1,12 @@
+import { useTodo } from "../TodoContext";
+import React, { useState } from "react";
 
-const TodoInput = (
-  {
-    todo,
-    addTodo,
-    setTodo,
-  }
-) => {
+const TodoForm = () => {
+  
+  const [todo, setTodo] = useState("");
+
+  const {addTodo} = useTodo();
+
   return (
     <div>
       <form
@@ -34,4 +35,4 @@ const TodoInput = (
   );
 };
 
-export default TodoInput;
+export default TodoForm;
